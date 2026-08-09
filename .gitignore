@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+dist/
+build/
+*.log
+.env
+.env.*
+.cache/
+.npm/
+.local/
+.config/
+.codex/
+.claude/
+.opencode/
+my-project/
+opencode-test/
+.bash_history
