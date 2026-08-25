@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a0c10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d100c" />
     <title>Not found — Focusboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500&display=swap" rel="stylesheet" />
     <style>
-      :root { --ink-0: #07080b; --text: #e7eaf3; --text-2: #a8aebd; --accent: #7aa2ff; --accent-2: #b78bff; --grad: linear-gradient(135deg, #7aa2ff 0%, #a78be7 50%, #ed826d 100%); }
+      :root { --ink-0: #0d100c; --ink-1: #131711; --text: #ece7d8; --text-2: #b8b3a4; --forest: #3f8a6b; --amber: #d9a441; --cream: #f4ead8; --grad: linear-gradient(135deg, #3f8a6b 0%, #d9a441 100%); }
       * { box-sizing: border-box; }
       body {
         margin: 0; min-height: 100vh;
@@ -18,33 +18,35 @@
         display: grid; place-items: center;
         overflow: hidden;
         position: relative;
+        -webkit-font-smoothing: antialiased;
       }
       body::before {
         content: ""; position: absolute; inset: -20%;
         background:
-          radial-gradient(circle at 20% 30%, rgba(122,162,255,.25), transparent 40%),
-          radial-gradient(circle at 80% 70%, rgba(183,139,255,.22), transparent 40%);
+          radial-gradient(circle at 20% 30%, rgba(63,138,107,.3), transparent 45%),
+          radial-gradient(circle at 80% 70%, rgba(217,164,65,.22), transparent 45%);
         filter: blur(80px);
         animation: drift 16s ease-in-out infinite;
       }
       @keyframes drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-20px); } }
-      main { text-align: center; position: relative; padding: 40px; max-width: 520px; }
+      main { text-align: center; position: relative; padding: 40px 24px; max-width: 520px; }
+      em { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-2); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 18px; font-style: normal; }
       h1 {
         font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(64px, 12vw, 120px);
-        margin: 0 0 8px; letter-spacing: -0.03em;
+        margin: 0 0 12px; letter-spacing: -0.03em; line-height: 1;
         background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
       }
       p { color: var(--text-2); font-size: 15px; line-height: 1.6; margin: 0 0 28px; }
       a {
         display: inline-flex; align-items: center; gap: 8px;
-        padding: 11px 20px; border-radius: 12px;
-        background: var(--grad); color: #0b0d12; font-weight: 600; font-size: 13px;
+        padding: 12px 22px; border-radius: 12px;
+        background: var(--grad); color: var(--ink-0); font-weight: 600; font-size: 13px;
         text-decoration: none;
-        box-shadow: 0 10px 30px rgba(122,162,255,.4);
+        box-shadow: 0 10px 30px rgba(63,138,107,.4);
         transition: transform .35s cubic-bezier(.34,1.56,.64,1);
       }
       a:hover { transform: translateY(-2px); }
-      em { display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-2); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 18px; font-style: normal; }
+      a:active { transform: translateY(0) scale(0.98); }
     </style>
   </head>
   <body>

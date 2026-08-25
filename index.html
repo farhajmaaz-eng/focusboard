@@ -3,12 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#0a0c10" />
+    <meta name="theme-color" content="#0d100c" />
     <meta name="color-scheme" content="dark" />
     <meta name="description" content="Focusboard — a calm, considered workspace for your day." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Focusboard" />
     <title>Focusboard — Make space for good work</title>
 
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0' stop-color='%237aa2ff'/><stop offset='1' stop-color='%23b78bff'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='%230b0d12'/><path d='M9 20 L9 12 M16 20 L16 8 M23 20 L23 14' stroke='url(%23g)' stroke-width='2.5' stroke-linecap='round'/></svg>" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d100c'/><path d='M9 20 L9 12 M16 20 L16 8 M23 20 L23 14' stroke='%233f8a6b' stroke-width='2.5' stroke-linecap='round'/></svg>" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%230d100c'/><path d='M50 110 L50 70 M90 110 L90 50 M130 110 L130 80' stroke='%233f8a6b' stroke-width='14' stroke-linecap='round'/></svg>" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +21,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <div class="ambient" aria-hidden="true">
       <div class="ambient__orb ambient__orb--a"></div>
       <div class="ambient__orb ambient__orb--b"></div>
@@ -26,112 +32,111 @@
     </div>
 
     <div class="app-shell" id="app-shell">
-      <aside class="sidebar" aria-label="Primary">
-        <a class="brand" href="#today" data-nav>
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-              <defs>
-                <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0" stop-color="#7aa2ff" />
-                  <stop offset="1" stop-color="#b78bff" />
-                </linearGradient>
-              </defs>
-              <rect x="1" y="1" width="22" height="22" rx="7" stroke="url(#bg)" stroke-width="1.5" />
-              <path d="M7 17 L7 11 M12 17 L12 7 M17 17 L17 13" stroke="url(#bg)" stroke-width="2" stroke-linecap="round" />
-            </svg>
-          </span>
-          <span class="brand-text">
-            <strong>Focusboard</strong>
-            <em>v2.0</em>
-          </span>
-        </a>
+      <aside class="sidebar" id="sidebar" aria-label="Primary" data-sheet="left">
+        <div class="sidebar__inner">
+          <a class="brand" href="#today" data-nav>
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+                <rect x="1" y="1" width="22" height="22" rx="7" stroke="#3f8a6b" stroke-width="1.5" />
+                <path d="M7 17 L7 11 M12 17 L12 7 M17 17 L17 13" stroke="#3f8a6b" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="brand-text">
+              <strong>Focusboard</strong>
+              <em>v2.1</em>
+            </span>
+          </a>
 
-        <div class="profile-card" data-magnetic>
-          <div class="avatar"><span>FM</span></div>
-          <div class="profile-meta">
-            <strong>Farhaj Maaz</strong>
-            <span>Product designer</span>
-          </div>
-          <button class="icon-button" aria-label="Open profile menu">
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><circle cx="3" cy="8" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="13" cy="8" r="1.5"/></svg>
-          </button>
-        </div>
-
-        <nav class="primary-nav" aria-label="Main">
-          <p class="eyebrow">Workspace</p>
-          <a class="nav-link is-active" href="#today" data-nav data-view="today">
-            <span class="nav-icon">
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v4l2.5 1.5" stroke-linecap="round"/></svg>
-            </span>
-            <span class="nav-label">Today</span>
-            <b class="nav-count" id="nav-today">5</b>
-          </a>
-          <a class="nav-link" href="#inbox" data-nav data-view="inbox">
-            <span class="nav-icon">
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4.5h11v7a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1z"/><path d="M2.5 4.5l1.6 2.5h7.8l1.6-2.5"/></svg>
-            </span>
-            <span class="nav-label">Inbox</span>
-            <b class="nav-count" id="nav-inbox">3</b>
-          </a>
-          <a class="nav-link" href="#upcoming" data-nav data-view="upcoming">
-            <span class="nav-icon">
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3.5" width="12" height="10" rx="1.5"/><path d="M2 6.5h12M5.5 2v3M10.5 2v3" stroke-linecap="round"/></svg>
-            </span>
-            <span class="nav-label">Upcoming</span>
-          </a>
-          <a class="nav-link" href="#completed" data-nav data-view="completed">
-            <span class="nav-icon">
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8.5l3 3 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span class="nav-label">Completed</span>
-          </a>
-        </nav>
-
-        <nav class="primary-nav projects" aria-label="Projects" id="projects-nav">
-          <div class="nav-heading">
-            <p class="eyebrow">Projects</p>
-            <button class="text-button" id="new-project" aria-label="Add project">
-              <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1.5v9M1.5 6h9" stroke-linecap="round"/></svg>
+          <div class="profile-card" data-magnetic>
+            <div class="avatar"><span>FM</span></div>
+            <div class="profile-meta">
+              <strong>Farhaj Maaz</strong>
+              <span>Product designer</span>
+            </div>
+            <button class="icon-button" aria-label="Open profile menu" data-close-sidebar>
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><circle cx="3" cy="8" r="1.5"/><circle cx="8" cy="8" r="1.5"/><circle cx="13" cy="8" r="1.5"/></svg>
             </button>
           </div>
-        </nav>
 
-        <div class="sidebar-footer">
-          <div class="weekly-progress">
-            <div class="weekly-progress__head"><span>Weekly rhythm</span><strong id="weekly-percent">68%</strong></div>
-            <div class="progress-track"><i id="weekly-bar" style="--p:68%"></i></div>
-            <div class="weekly-progress__foot">
-              <span class="dot dot--on"></span><span class="dot dot--on"></span><span class="dot dot--on"></span><span class="dot dot--on"></span><span class="dot dot--on"></span><span class="dot dot--on"></span><span class="dot"></span>
+          <nav class="primary-nav" aria-label="Main">
+            <p class="eyebrow">Workspace</p>
+            <a class="nav-link is-active" href="#today" data-nav data-view="today">
+              <span class="nav-icon">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v4l2.5 1.5" stroke-linecap="round"/></svg>
+              </span>
+              <span class="nav-label">Today</span>
+              <b class="nav-count" id="nav-today">0</b>
+            </a>
+            <a class="nav-link" href="#inbox" data-nav data-view="inbox">
+              <span class="nav-icon">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4.5h11v7a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1z"/><path d="M2.5 4.5l1.6 2.5h7.8l1.6-2.5"/></svg>
+              </span>
+              <span class="nav-label">Inbox</span>
+              <b class="nav-count" id="nav-inbox">0</b>
+            </a>
+            <a class="nav-link" href="#upcoming" data-nav data-view="upcoming">
+              <span class="nav-icon">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3.5" width="12" height="10" rx="1.5"/><path d="M2 6.5h12M5.5 2v3M10.5 2v3" stroke-linecap="round"/></svg>
+              </span>
+              <span class="nav-label">Upcoming</span>
+            </a>
+            <a class="nav-link" href="#completed" data-nav data-view="completed">
+              <span class="nav-icon">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8.5l3 3 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="nav-label">Completed</span>
+            </a>
+          </nav>
+
+          <nav class="primary-nav projects" aria-label="Projects" id="projects-nav">
+            <div class="nav-heading">
+              <p class="eyebrow">Projects</p>
+              <button class="text-button" id="new-project" aria-label="Add project">
+                <svg viewBox="0 0 12 12" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 1.5v9M1.5 6h9" stroke-linecap="round"/></svg>
+              </button>
             </div>
+          </nav>
+
+          <div class="sidebar-footer">
+            <div class="weekly-progress">
+              <div class="weekly-progress__head"><span>Weekly rhythm</span><strong id="weekly-percent">0%</strong></div>
+              <div class="progress-track"><i id="weekly-bar" style="--p:0%"></i></div>
+              <div class="weekly-progress__foot" id="weekly-dots" aria-hidden="true"></div>
+            </div>
+            <a class="nav-link muted-link" href="#settings" data-nav>
+              <span class="nav-icon">
+                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"/><path d="M8 1.5v2M8 12.5v2M14.5 8h-2M3.5 8h-2M12.6 3.4l-1.4 1.4M4.8 11.2l-1.4 1.4M12.6 12.6l-1.4-1.4M4.8 4.8L3.4 3.4"/></svg>
+              </span>
+              <span class="nav-label">Settings</span>
+            </a>
+            <span class="version">Made with intention ✦</span>
           </div>
-          <a class="nav-link muted-link" href="#settings" data-nav>
-            <span class="nav-icon">
-              <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"/><path d="M8 1.5v2M8 12.5v2M14.5 8h-2M3.5 8h-2M12.6 3.4l-1.4 1.4M4.8 11.2l-1.4 1.4M12.6 12.6l-1.4-1.4M4.8 4.8L3.4 3.4"/></svg>
-            </span>
-            <span class="nav-label">Settings</span>
-          </a>
-          <span class="version">Made with intention ✦</span>
         </div>
       </aside>
 
-      <main class="main-content">
+      <div class="sidebar-scrim" data-close-sidebar aria-hidden="true"></div>
+
+      <main class="main-content" id="main">
         <header class="topbar">
+          <button class="icon-only menu-trigger" id="menu-trigger" aria-label="Open menu" data-magnetic>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h12M2 12h12" stroke-linecap="round"/></svg>
+          </button>
           <div class="breadcrumb">
-            <span>Workspace</span>
+            <span class="bc-root">Workspace</span>
             <span class="slash">/</span>
             <strong id="view-label">Today</strong>
           </div>
           <div class="top-actions">
-            <button class="search-trigger" id="search-trigger" data-magnetic>
+            <button class="search-trigger" id="search-trigger" data-magnetic aria-label="Search">
               <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
               <span class="search-label">Search anything</span>
               <kbd>⌘K</kbd>
             </button>
-            <button class="notification-button" aria-label="Notifications" data-magnetic>
+            <button class="icon-only notification-button" aria-label="Notifications" data-magnetic>
               <span class="notification-dot"></span>
               <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 12.5h9l-1-1.5V8a3.5 3.5 0 1 0-7 0v3zM6.5 12.5a1.5 1.5 0 0 0 3 0"/></svg>
             </button>
-            <div class="mini-avatar" data-magnetic><span>FM</span></div>
+            <div class="mini-avatar" data-magnetic role="button" tabindex="0" aria-label="Profile"><span>FM</span></div>
           </div>
         </header>
 
@@ -143,16 +148,16 @@
               <p class="lede" id="lede">A clear mind makes room for meaningful work.</p>
             </div>
             <button class="primary-button" id="add-task" data-magnetic>
-              <span class="plus">
+              <span class="plus" aria-hidden="true">
                 <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 1.5v9M1.5 6h9" stroke-linecap="round"/></svg>
               </span>
-              Add task
+              <span class="primary-button__label">Add task</span>
               <span class="primary-button__kbd">N</span>
             </button>
           </section>
 
           <section class="stats-grid" aria-label="Daily overview">
-            <article class="stat-card reveal" data-reveal="1" data-magnetic>
+            <article class="stat-card reveal" data-reveal="1" data-magnetic data-stat="focus">
               <div class="stat-head">
                 <div class="stat-icon accent">
                   <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11l3-3 3 3 4-6" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 5h3v3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -160,25 +165,25 @@
                 <span class="stat-label">Daily focus</span>
               </div>
               <div class="stat-value">
-                <strong>4<small>h</small> 20<small>m</small></strong>
-                <small class="trend up">+32m from yesterday</small>
+                <strong><span id="focus-hours">4</span><small>h</small> <span id="focus-minutes">20</span><small>m</small></strong>
+                <small class="trend up" id="focus-trend">+32m from yesterday</small>
               </div>
               <div class="sparkline" aria-hidden="true">
                 <svg viewBox="0 0 120 40" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="sparkGrad" x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0" stop-color="rgba(122,162,255,.45)" />
-                      <stop offset="1" stop-color="rgba(122,162,255,0)" />
+                      <stop offset="0" stop-color="rgba(63,138,107,.55)" />
+                      <stop offset="1" stop-color="rgba(63,138,107,0)" />
                     </linearGradient>
                   </defs>
                   <path d="M0 30 L15 26 L30 28 L45 18 L60 22 L75 12 L90 16 L105 6 L120 10 L120 40 L0 40 Z" fill="url(#sparkGrad)" />
-                  <path d="M0 30 L15 26 L30 28 L45 18 L60 22 L75 12 L90 16 L105 6 L120 10" stroke="rgba(122,162,255,.9)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M0 30 L15 26 L30 28 L45 18 L60 22 L75 12 L90 16 L105 6 L120 10" stroke="#3f8a6b" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 <span class="sparkline__dot" style="--x: 87%; --y: 15%"></span>
               </div>
             </article>
 
-            <article class="stat-card reveal" data-reveal="2" data-magnetic>
+            <article class="stat-card reveal" data-reveal="2" data-magnetic data-stat="completed">
               <div class="stat-head">
                 <div class="stat-icon soft-green">
                   <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8.5l3 3 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -186,38 +191,30 @@
                 <span class="stat-label">Completed</span>
               </div>
               <div class="stat-value">
-                <strong><span id="completed-count">8</span> <em>/ <span id="total-count">12</span></em></strong>
-                <small class="trend">Keep the momentum</small>
+                <strong><span id="completed-count">0</span> <em>/ <span id="total-count">0</span></em></strong>
+                <small class="trend" id="completed-trend">Keep the momentum</small>
               </div>
               <div class="circle-progress" aria-hidden="true">
                 <svg viewBox="0 0 44 44">
-                  <circle cx="22" cy="22" r="18" stroke="rgba(255,255,255,.08)" stroke-width="3" fill="none" />
-                  <circle id="ring-progress" cx="22" cy="22" r="18" stroke="url(#ringGrad)" stroke-width="3" fill="none" stroke-linecap="round" transform="rotate(-90 22 22)" pathLength="100" stroke-dasharray="100" stroke-dashoffset="33" />
-                  <defs>
-                    <linearGradient id="ringGrad" x1="0" x2="1" y1="0" y2="1">
-                      <stop offset="0" stop-color="#7aa2ff" />
-                      <stop offset="1" stop-color="#b78bff" />
-                    </linearGradient>
-                  </defs>
+                  <circle cx="22" cy="22" r="18" stroke="rgba(236,231,216,.12)" stroke-width="3" fill="none" />
+                  <circle id="ring-progress" cx="22" cy="22" r="18" stroke="#3f8a6b" stroke-width="3" fill="none" stroke-linecap="round" transform="rotate(-90 22 22)" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" />
                 </svg>
-                <span id="completion-percent">67%</span>
+                <span id="completion-percent">0%</span>
               </div>
             </article>
 
-            <article class="stat-card reveal" data-reveal="3" data-magnetic>
+            <article class="stat-card reveal" data-reveal="3" data-magnetic data-stat="streak">
               <div class="stat-head">
-                <div class="stat-icon soft-yellow">
+                <div class="stat-icon soft-amber">
                   <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v3M8 11v3M2 8h3M11 8h3M3.8 3.8l2 2M10.2 10.2l2 2M3.8 12.2l2-2M10.2 5.8l2-2"/></svg>
                 </div>
                 <span class="stat-label">Deep work streak</span>
               </div>
               <div class="stat-value">
-                <strong>6 <small>days</small></strong>
-                <small class="trend">Best: 12 days</small>
+                <strong><span id="streak-days">6</span> <small>days</small></strong>
+                <small class="trend">Best: <span id="streak-best">12</span> days</small>
               </div>
-              <div class="streak-dots" id="streak-dots">
-                <i></i><i></i><i></i><i></i><i></i><i class="today-dot"></i><i></i>
-              </div>
+              <div class="streak-dots" id="streak-dots" aria-hidden="true"></div>
             </article>
           </section>
 
@@ -226,9 +223,9 @@
               <div class="section-heading">
                 <div>
                   <p class="eyebrow">Your agenda</p>
-                  <h2 id="tasks-title">Today's tasks <span class="h2-count" id="task-total">5</span></h2>
+                  <h2 id="tasks-title">Today's tasks <span class="h2-count" id="task-total">0</span></h2>
                 </div>
-                <div class="view-switcher" role="tablist">
+                <div class="view-switcher" role="tablist" aria-label="View mode">
                   <button class="view-button is-active" aria-label="List view" data-view-mode="list" role="tab" aria-selected="true">
                     <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M3 8h10M3 12h10" stroke-linecap="round"/></svg>
                   </button>
@@ -238,23 +235,23 @@
                 </div>
               </div>
               <div class="task-toolbar">
-                <div class="filter-pills" id="filter-pills">
-                  <button class="filter-pill is-active" data-filter="all">All <span>5</span></button>
-                  <button class="filter-pill" data-filter="work">Work</button>
-                  <button class="filter-pill" data-filter="personal">Personal</button>
+                <div class="filter-pills" id="filter-pills" role="tablist" aria-label="Filter">
+                  <button class="filter-pill is-active" data-filter="all" role="tab" aria-selected="true">All <span>0</span></button>
+                  <button class="filter-pill" data-filter="work" role="tab" aria-selected="false">Work <span>0</span></button>
+                  <button class="filter-pill" data-filter="personal" role="tab" aria-selected="false">Personal <span>0</span></button>
                 </div>
-                <button class="sort-button" id="sort-tasks">
+                <button class="sort-button" id="sort-tasks" aria-label="Toggle sort order">
                   <span>Sort: Priority</span>
                   <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
               </div>
-              <div class="task-list" id="task-list"></div>
+              <div class="task-list" id="task-list" role="list"></div>
               <button class="add-inline" id="add-inline">
-                <span class="add-inline__plus">
+                <span class="add-inline__plus" aria-hidden="true">
                   <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 1.5v9M1.5 6h9" stroke-linecap="round"/></svg>
                 </span>
                 Add another task
-                <kbd>⌘N</kbd>
+                <kbd class="add-inline__kbd">N</kbd>
               </button>
             </section>
 
@@ -268,26 +265,18 @@
                   <span class="focus-badge"><i></i> Deep work</span>
                 </div>
                 <div class="timer-ring" id="timer-ring">
-                  <svg viewBox="0 0 220 220" class="timer-ring__svg">
-                    <defs>
-                      <linearGradient id="timerGrad" x1="0" x2="1" y1="0" y2="1">
-                        <stop offset="0" stop-color="#7aa2ff" />
-                        <stop offset="0.5" stop-color="#a78be7" />
-                        <stop offset="1" stop-color="#ed826d" />
-                      </linearGradient>
-                      <filter id="timerGlow"><feGaussianBlur stdDeviation="4" /></filter>
-                    </defs>
-                    <circle cx="110" cy="110" r="96" stroke="rgba(255,255,255,.06)" stroke-width="1.5" fill="none" />
-                    <circle id="timer-track" cx="110" cy="110" r="96" stroke="url(#timerGrad)" stroke-width="3" fill="none" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0" transform="rotate(-90 110 110)" />
-                    <circle id="timer-glow" cx="110" cy="110" r="96" stroke="url(#timerGrad)" stroke-width="6" fill="none" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0" transform="rotate(-90 110 110)" filter="url(#timerGlow)" opacity=".55" />
+                  <svg viewBox="0 0 220 220" class="timer-ring__svg" aria-hidden="true">
+                    <circle cx="110" cy="110" r="96" stroke="rgba(236,231,216,.08)" stroke-width="1.5" fill="none" />
+                    <circle id="timer-track" cx="110" cy="110" r="96" stroke="#3f8a6b" stroke-width="3" fill="none" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0" transform="rotate(-90 110 110)" />
+                    <circle id="timer-glow" cx="110" cy="110" r="96" stroke="#3f8a6b" stroke-width="6" fill="none" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0" transform="rotate(-90 110 110)" opacity=".35" />
                   </svg>
                   <div class="timer-inner">
                     <strong id="timer-display">25:00</strong>
                     <span id="timer-status">Ready when you are</span>
-                    <div class="timer-mode" id="timer-mode">
-                      <button class="timer-mode__btn is-active" data-mode="25">25</button>
-                      <button class="timer-mode__btn" data-mode="50">50</button>
-                      <button class="timer-mode__btn" data-mode="90">90</button>
+                    <div class="timer-mode" id="timer-mode" role="tablist" aria-label="Timer duration">
+                      <button class="timer-mode__btn is-active" data-mode="25" role="tab" aria-selected="true">25</button>
+                      <button class="timer-mode__btn" data-mode="50" role="tab" aria-selected="false">50</button>
+                      <button class="timer-mode__btn" data-mode="90" role="tab" aria-selected="false">90</button>
                     </div>
                   </div>
                 </div>
@@ -313,19 +302,19 @@
                     <p class="eyebrow">Coming up</p>
                     <h2>Schedule</h2>
                   </div>
-                  <button class="more-button" aria-label="More schedule options" data-magnetic>
+                  <button class="icon-only more-button" aria-label="More schedule options" data-magnetic>
                     <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><circle cx="3" cy="8" r="1.4"/><circle cx="8" cy="8" r="1.4"/><circle cx="13" cy="8" r="1.4"/></svg>
                   </button>
                 </div>
                 <div class="schedule-date">
-                  <button aria-label="Previous day" data-magnetic>
+                  <button class="icon-only" aria-label="Previous day" data-magnetic>
                     <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3l-5 5 5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
                   <div>
                     <strong id="schedule-date-strong">Mon, Oct 21</strong>
                     <span>Today</span>
                   </div>
-                  <button aria-label="Next day" data-magnetic>
+                  <button class="icon-only" aria-label="Next day" data-magnetic>
                     <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   </button>
                 </div>
@@ -340,17 +329,52 @@
 
           <section class="quote-strip reveal" data-reveal="7">
             <span class="quote-mark">“</span>
-            <p>What you do every day matters more than what you do once in a while.</p>
-            <span class="quote-author">— Gretchen Rubin</span>
-            <span class="quote-leaf">✳</span>
+            <p id="quote-text">What you do every day matters more than what you do once in a while.</p>
+            <span class="quote-author" id="quote-author">— Gretchen Rubin</span>
+            <span class="quote-leaf" aria-hidden="true">✳</span>
           </section>
         </div>
       </main>
     </div>
 
-    <div class="modal-backdrop" id="task-modal" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <button class="close-modal" id="close-modal" aria-label="Close">
+    <nav class="tabbar" aria-label="Primary navigation" id="tabbar">
+      <button class="tabbar__item is-active" data-view="today" data-nav>
+        <span class="tabbar__icon">
+          <svg viewBox="0 0 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v4l2.5 1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="tabbar__label">Today</span>
+      </button>
+      <button class="tabbar__item" data-view="inbox" data-nav>
+        <span class="tabbar__icon">
+          <svg viewBox="0 0 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4.5h11v7a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1z"/><path d="M2.5 4.5l1.6 2.5h7.8l1.6-2.5"/></svg>
+        </span>
+        <span class="tabbar__label">Inbox</span>
+        <b class="tabbar__count" id="tab-inbox">0</b>
+      </button>
+      <button class="tabbar__item tabbar__item--focus" id="tab-focus" aria-label="Start focus session">
+        <span class="tabbar__play">
+          <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor"><path d="M4 3l9 5-9 5z"/></svg>
+        </span>
+      </button>
+      <button class="tabbar__item" data-view="upcoming" data-nav>
+        <span class="tabbar__icon">
+          <svg viewBox="0 0 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3.5" width="12" height="10" rx="1.5"/><path d="M2 6.5h12"/></svg>
+        </span>
+        <span class="tabbar__label">Schedule</span>
+      </button>
+      <button class="tabbar__item" id="tab-menu" aria-label="More">
+        <span class="tabbar__icon">
+          <svg viewBox="0 0 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="3" cy="8" r="1.4"/><circle cx="8" cy="8" r="1.4"/><circle cx="13" cy="8" r="1.4"/></svg>
+        </span>
+        <span class="tabbar__label">More</span>
+      </button>
+    </nav>
+
+    <div class="sheet" id="task-modal" data-sheet="bottom" aria-hidden="true">
+      <div class="sheet__backdrop" data-close-sheet></div>
+      <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="sheet__handle" aria-hidden="true"></div>
+        <button class="sheet__close icon-only" data-close-sheet aria-label="Close">
           <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l8 8M12 4l-8 8" stroke-linecap="round"/></svg>
         </button>
         <p class="eyebrow">New item</p>
@@ -370,21 +394,21 @@
             </label>
             <label class="field">
               <span>Priority</span>
-              <div class="priority-picker" id="priority-picker">
-                <button type="button" class="priority-dot high" data-priority="high" aria-label="High priority"></button>
-                <button type="button" class="priority-dot medium is-active" data-priority="medium" aria-label="Medium priority"></button>
-                <button type="button" class="priority-dot low" data-priority="low" aria-label="Low priority"></button>
+              <div class="priority-picker" id="priority-picker" role="radiogroup" aria-label="Priority">
+                <button type="button" class="priority-dot high" data-priority="high" aria-label="High priority" role="radio" aria-checked="false"></button>
+                <button type="button" class="priority-dot medium is-active" data-priority="medium" aria-label="Medium priority" role="radio" aria-checked="true"></button>
+                <button type="button" class="priority-dot low" data-priority="low" aria-label="Low priority" role="radio" aria-checked="false"></button>
               </div>
               <input type="hidden" id="task-priority" name="priority" value="medium" />
             </label>
           </div>
           <label class="field">
             <span>Time estimate</span>
-            <div class="time-chips" id="time-chips">
-              <button type="button" class="time-chip" data-time="15 min">15m</button>
-              <button type="button" class="time-chip is-active" data-time="30 min">30m</button>
-              <button type="button" class="time-chip" data-time="1 hr">1h</button>
-              <button type="button" class="time-chip" data-time="2 hr">2h</button>
+            <div class="time-chips" id="time-chips" role="radiogroup" aria-label="Time estimate">
+              <button type="button" class="time-chip" data-time="15 min" role="radio" aria-checked="false">15m</button>
+              <button type="button" class="time-chip is-active" data-time="30 min" role="radio" aria-checked="true">30m</button>
+              <button type="button" class="time-chip" data-time="1 hr" role="radio" aria-checked="false">1h</button>
+              <button type="button" class="time-chip" data-time="2 hr" role="radio" aria-checked="false">2h</button>
             </div>
             <input type="hidden" id="task-time" name="time" value="30 min" />
           </label>
@@ -396,15 +420,18 @@
       </div>
     </div>
 
-    <div class="command-palette" id="command-palette" aria-hidden="true">
-      <div class="command-backdrop" data-close></div>
-      <div class="command-panel" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="sheet sheet--palette" id="command-palette" data-sheet="bottom" aria-hidden="true">
+      <div class="sheet__backdrop" data-close-sheet></div>
+      <div class="sheet__panel sheet__panel--palette" role="dialog" aria-modal="true" aria-label="Command palette">
+        <div class="sheet__handle" aria-hidden="true"></div>
         <div class="command-input">
           <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
-          <input id="command-input" placeholder="Type a command or search…" autocomplete="off" />
-          <kbd>ESC</kbd>
+          <input id="command-input" placeholder="Search tasks or type a command…" autocomplete="off" inputmode="search" />
+          <button class="sheet__close icon-only" data-close-sheet aria-label="Close">
+            <kbd>ESC</kbd>
+          </button>
         </div>
-        <div class="command-list" id="command-list"></div>
+        <div class="command-list" id="command-list" role="listbox"></div>
         <div class="command-foot">
           <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
           <span><kbd>↵</kbd> select</span>
@@ -414,7 +441,7 @@
     </div>
 
     <div class="toast" id="toast" role="status" aria-live="polite">
-      <span class="toast__dot"></span>
+      <span class="toast__dot" aria-hidden="true"></span>
       <span class="toast__text"></span>
     </div>
 
@@ -423,6 +450,6 @@
       <div class="cursor__ring"></div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
   </body>
 </html>
